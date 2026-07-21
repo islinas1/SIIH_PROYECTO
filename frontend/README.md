@@ -1,16 +1,127 @@
-# React + Vite
+---
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Frontend (React + Vite)
 
-Currently, two official plugins are available:
+## Arranque rápido
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### 1. Instalar dependencias
 
-## React Compiler
+````bash
+cd frontend
+npm install
+````
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 2. Configurar variables de entorno
 
-## Expanding the ESLint configuration
+````bash
+cp .env.example .env
+````
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+El archivo define la URL del backend:
+
+````
+VITE_API_URL=http://localhost:5000/api
+````
+
+> Si se modifica el `.env`, reiniciar el servidor de Vite para que tome los cambios.
+
+### 3. Levantar el servidor de desarrollo
+
+````bash
+npm run dev
+````
+
+La aplicación queda disponible en `http://localhost:5173`.
+
+> **Nota:** el backend debe estar corriendo en `http://localhost:5000` para que el login y los módulos conectados funcionen. Ingresar con los usuarios del seed del backend (tabla de arriba).
+
+## Módulos y estado de integración
+
+
+|
+ Módulo 
+|
+ Estado 
+|
+|
+---
+|
+---
+|
+|
+ Login (JWT + roles) 
+|
+ ✅ Conectado al backend 
+|
+|
+ Gestión de pacientes 
+|
+ ✅ Conectado al backend 
+|
+|
+ Historia clínica y alergias 
+|
+ ✅ Conectado al backend 
+|
+|
+ Consulta médica (diagnóstico + receta) 
+|
+ ✅ Conectado al backend 
+|
+|
+ Farmacia (inventario + dispensación FIFO) 
+|
+ ✅ Conectado al backend 
+|
+|
+ Administración de usuarios del personal 
+|
+ ✅ Conectado al backend 
+|
+|
+ Control de camas / internaciones 
+|
+ ✅ Conectado al backend 
+|
+|
+ Cola de pacientes del día 
+|
+ 🟡 Prototipo (pendiente endpoint en backend) 
+|
+|
+ Citas, Laboratorio, Reportes 
+|
+ ⬜ Planificados 
+|
+
+## Estructura del frontend
+
+````
+frontend/
+├── .env.example
+├── vite.config.js
+└── src/
+    ├── api/
+    │   └── client.js            ← axios + interceptor JWT + manejo de 401
+    ├── context/
+    │   └── AuthContext.jsx      ← sesión, login/logout contra el backend
+    ├── routes/
+    │   └── AppRoutes.jsx        ← rutas protegidas por rol
+    ├── services/                ← llamadas a la API por dominio
+    │   ├── patientService.js
+    │   ├── pharmacyService.js
+    │   ├── consultationService.js
+    │   └── staffService.js
+    ├── features/                ← pantallas por dominio
+    │   ├── auth/
+    │   ├── pacientes/
+    │   ├── atencion/
+    │   ├── farmacia/
+    │   ├── hospitalizacion/
+    │   └── administracion/
+    ├── components/              ← layout (Sidebar, Navbar) y comunes
+    └── layouts/
+        └── MainLayout.jsx
+````
+
+---
