@@ -1,127 +1,39 @@
----
+# SIIH — Frontend
 
-# Frontend (React + Vite)
+Interfaz web del **Sistema Integrado de Información Hospitalaria (SIIH)** del Hospital Universitario San Andrés. Este frontend consume la API REST del backend Flask del proyecto y cubre el flujo hospitalario central: gestión de pacientes, historia clínica, consulta médica con receta electrónica, farmacia con dispensación e inventario, hospitalización y administración de usuarios del personal.
 
-## Arranque rápido
+> Proyecto académico — INF-266 Taller de Sistemas de Información, Carrera de Informática, UMSA. Grupo 9.
 
-### 1. Instalar dependencias
+## Tecnologías
 
-````bash
+| Tecnología | Versión | Rol |
+|---|---|---|
+| React | 19 | Biblioteca de interfaz de usuario |
+| Vite | 8 | Empaquetador y servidor de desarrollo |
+| React Router DOM | 7 | Ruteo y protección de rutas por rol |
+| Axios | 1.x | Cliente HTTP hacia la API del backend |
+| Bootstrap | 5.3 | Base de estilos (complementada con CSS propio) |
+| SweetAlert2 | 11 | Diálogos y confirmaciones |
+| React Icons (Feather) | — | Iconografía |
+
+## Requisitos previos
+
+- **Node.js 20.19+ o 22.12+** (recomendado: LTS actual)
+- El **backend del SIIH corriendo** en `http://localhost:5000` (ver el README de la carpeta `backend/`)
+
+## Instalación
+
+```bash
 cd frontend
 npm install
-````
+```
 
-### 2. Configurar variables de entorno
+## Configuración
 
-````bash
-cp .env.example .env
-````
+Crear un archivo `.env` en la raíz del frontend a partir de la plantilla:
 
-El archivo define la URL del backend:
+```bash
+copy .env.example .env
+```
 
-````
-VITE_API_URL=http://localhost:5000/api
-````
-
-> Si se modifica el `.env`, reiniciar el servidor de Vite para que tome los cambios.
-
-### 3. Levantar el servidor de desarrollo
-
-````bash
-npm run dev
-````
-
-La aplicación queda disponible en `http://localhost:5173`.
-
-> **Nota:** el backend debe estar corriendo en `http://localhost:5000` para que el login y los módulos conectados funcionen. Ingresar con los usuarios del seed del backend (tabla de arriba).
-
-## Módulos y estado de integración
-
-
-|
- Módulo 
-|
- Estado 
-|
-|
----
-|
----
-|
-|
- Login (JWT + roles) 
-|
- ✅ Conectado al backend 
-|
-|
- Gestión de pacientes 
-|
- ✅ Conectado al backend 
-|
-|
- Historia clínica y alergias 
-|
- ✅ Conectado al backend 
-|
-|
- Consulta médica (diagnóstico + receta) 
-|
- ✅ Conectado al backend 
-|
-|
- Farmacia (inventario + dispensación FIFO) 
-|
- ✅ Conectado al backend 
-|
-|
- Administración de usuarios del personal 
-|
- ✅ Conectado al backend 
-|
-|
- Control de camas / internaciones 
-|
- ✅ Conectado al backend 
-|
-|
- Cola de pacientes del día 
-|
- 🟡 Prototipo (pendiente endpoint en backend) 
-|
-|
- Citas, Laboratorio, Reportes 
-|
- ⬜ Planificados 
-|
-
-## Estructura del frontend
-
-````
-frontend/
-├── .env.example
-├── vite.config.js
-└── src/
-    ├── api/
-    │   └── client.js            ← axios + interceptor JWT + manejo de 401
-    ├── context/
-    │   └── AuthContext.jsx      ← sesión, login/logout contra el backend
-    ├── routes/
-    │   └── AppRoutes.jsx        ← rutas protegidas por rol
-    ├── services/                ← llamadas a la API por dominio
-    │   ├── patientService.js
-    │   ├── pharmacyService.js
-    │   ├── consultationService.js
-    │   └── staffService.js
-    ├── features/                ← pantallas por dominio
-    │   ├── auth/
-    │   ├── pacientes/
-    │   ├── atencion/
-    │   ├── farmacia/
-    │   ├── hospitalizacion/
-    │   └── administracion/
-    ├── components/              ← layout (Sidebar, Navbar) y comunes
-    └── layouts/
-        └── MainLayout.jsx
-````
-
----
+Contenido esperado:
