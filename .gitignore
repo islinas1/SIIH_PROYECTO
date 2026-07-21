@@ -1,0 +1,20 @@
+# --- Backend (Python / Flask) ---
+backend/venv/
+backend/__pycache__/
+**/__pycache__/
+*.pyc
+backend/.env
+backend/instance/
+backend/migrations/versions/*.pyc
+
+# --- Frontend (Node / Vite) ---
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.local
+
+# --- General ---
+.env
+*.log
+.DS_Store
+.vscode/
